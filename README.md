@@ -28,7 +28,7 @@ O **`notification-service`** é o microsserviço responsável pelo envio de comu
 ## 📂 Estrutura de Diretórios
 
 ```
-tech-challenge-repairshop-notification-service/
+tech-challenge-repairshop-app-notification-service/
 ├── .github/workflows/         # Pipelines de CI/CD (GitHub Actions)
 ├── k8s/                       # Manifestos Kubernetes (Deployment, Service, HPA, ConfigMap)
 ├── src/

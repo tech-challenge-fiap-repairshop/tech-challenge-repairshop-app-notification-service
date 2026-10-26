@@ -1,0 +1,49 @@
+services:
+  localstack:
+    image: localstack/localstack:latest
+    container_name: notification-localstack
+    environment:
+      - SERVICES=sqs
+      - DEFAULT_REGION=us-east-1
+      - AWS_DEFAULT_REGION=us-east-1
+    ports:
+      - "4566:4566"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4566/_localstack/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  mailpit:
+    image: axllent/mailpit:latest
+    container_name: notification-mailpit
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+  notification-service:
+    build: .
+    container_name: notification-service-standalone
+    environment:
+      SERVER_PORT: 8083
+      AWS_ENDPOINT_URL: http://localstack:4566
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+      AWS_REGION: us-east-1
+      SPRING_MAIL_HOST: mailpit
+      SPRING_MAIL_PORT: 1025
+      SQS_QUEUE_APPROVE_NOTIFICATION: approve-notification-queue-dev
+      SQS_QUEUE_CALLBACK_APPROVE: callback-approve-notification-queue-dev
+      SQS_QUEUE_PAYMENT_NOTIFICATION: payment-notification-queue-dev
+      # OpenTelemetry
+      OTEL_SERVICE_NAME: notification-service
+      OTEL_TRACES_EXPORTER: none
+      OTEL_METRICS_EXPORTER: prometheus
+      OTEL_LOGS_EXPORTER: none
+    ports:
+      - "8083:8083"
+    depends_on:
+      localstack:
+        condition: service_healthy
+      mailpit:
+        condition: service_started
