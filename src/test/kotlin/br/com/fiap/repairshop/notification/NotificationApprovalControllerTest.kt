@@ -3,21 +3,21 @@ package br.com.fiap.repairshop.notification
 import br.com.fiap.repairshop.notification.infrastructure.messaging.NotificationSqsMessenger
 import br.com.fiap.repairshop.notification.infrastructure.web.ApprovalDecisionRequest
 import br.com.fiap.repairshop.notification.infrastructure.web.NotificationApprovalController
+import io.mockk.*
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.mockito.Mockito.*
 import org.springframework.http.HttpStatus
 import java.util.UUID
 
 class NotificationApprovalControllerTest {
 
-    private lateinit var messenger: NotificationSqsMessenger
+    private val messenger: NotificationSqsMessenger = mockk(relaxed = true)
     private lateinit var controller: NotificationApprovalController
 
     @BeforeEach
     fun setUp() {
-        messenger = mock(NotificationSqsMessenger::class.java)
+        clearAllMocks()
         controller = NotificationApprovalController(messenger)
     }
 
@@ -26,6 +26,8 @@ class NotificationApprovalControllerTest {
         val orderId = UUID.randomUUID()
         val request = ApprovalDecisionRequest(approved = true, reason = "Serviço aprovado")
 
+        every { messenger.sendApprovalDecision(orderId, true, "Serviço aprovado") } just Runs
+
         val res = controller.decideApproval(orderId, request)
 
         assertEquals(HttpStatus.OK, res.statusCode)
@@ -33,13 +35,15 @@ class NotificationApprovalControllerTest {
         assertEquals(orderId, res.body?.get("orderId"))
         assertEquals(true, res.body?.get("approved"))
         assertEquals("ORCAMENTO_APROVADO", res.body?.get("status"))
-        verify(messenger, times(1)).sendApprovalDecision(orderId, true, "Serviço aprovado")
+        verify(exactly = 1) { messenger.sendApprovalDecision(orderId, true, "Serviço aprovado") }
     }
 
     @Test
     fun `should process rejection decision when approved is false`() {
         val orderId = UUID.randomUUID()
         val request = ApprovalDecisionRequest(approved = false, reason = "Preço elevado")
+
+        every { messenger.sendApprovalDecision(orderId, false, "Preço elevado") } just Runs
 
         val res = controller.decideApproval(orderId, request)
 
@@ -48,7 +52,7 @@ class NotificationApprovalControllerTest {
         assertEquals(orderId, res.body?.get("orderId"))
         assertEquals(false, res.body?.get("approved"))
         assertEquals("ORCAMENTO_REJEITADO", res.body?.get("status"))
-        verify(messenger, times(1)).sendApprovalDecision(orderId, false, "Preço elevado")
+        verify(exactly = 1) { messenger.sendApprovalDecision(orderId, false, "Preço elevado") }
     }
 
     @Test
