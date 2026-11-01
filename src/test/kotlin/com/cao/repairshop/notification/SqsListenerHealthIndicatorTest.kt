@@ -1,6 +1,6 @@
-package br.com.fiap.repairshop.notification
+﻿package com.cao.repairshop.notification
 
-import br.com.fiap.repairshop.notification.infrastructure.health.SqsListenerHealthIndicator
+import com.cao.repairshop.notification.infrastructure.health.SqsListenerHealthIndicator
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
