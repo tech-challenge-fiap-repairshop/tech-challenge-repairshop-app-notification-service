@@ -1,4 +1,4 @@
-package br.com.fiap.repairshop.notification.infrastructure.config
+﻿package com.cao.repairshop.notification.infrastructure.config
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper

@@ -1,6 +1,6 @@
-package br.com.fiap.repairshop.notification.infrastructure.messaging
+﻿package com.cao.repairshop.notification.infrastructure.messaging
 
-import br.com.fiap.repairshop.notification.infrastructure.health.SqsListenerHealthIndicator
+import com.cao.repairshop.notification.infrastructure.health.SqsListenerHealthIndicator
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.opentelemetry.api.trace.Span
 import org.slf4j.LoggerFactory

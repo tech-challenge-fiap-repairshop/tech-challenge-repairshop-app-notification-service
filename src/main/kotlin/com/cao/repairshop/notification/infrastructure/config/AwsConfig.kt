@@ -1,4 +1,4 @@
-package br.com.fiap.repairshop.notification.infrastructure.config
+﻿package com.cao.repairshop.notification.infrastructure.config
 
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
