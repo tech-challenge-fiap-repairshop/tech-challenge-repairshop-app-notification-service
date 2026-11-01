@@ -25,7 +25,7 @@ services:
     build: .
     container_name: notification-service-standalone
     environment:
-      SERVER_PORT: 8083
+      SERVER_PORT: 8080
       AWS_ENDPOINT_URL: http://localstack:4566
       AWS_ACCESS_KEY_ID: test
       AWS_SECRET_ACCESS_KEY: test
@@ -41,7 +41,7 @@ services:
       OTEL_METRICS_EXPORTER: prometheus
       OTEL_LOGS_EXPORTER: none
     ports:
-      - "8083:8083"
+      - "8083:8080"
     depends_on:
       localstack:
         condition: service_healthy
