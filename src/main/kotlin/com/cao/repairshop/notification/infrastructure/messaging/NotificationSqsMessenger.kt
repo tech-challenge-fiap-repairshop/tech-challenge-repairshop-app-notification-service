@@ -1,6 +1,7 @@
-﻿package com.cao.repairshop.notification.infrastructure.messaging
+package com.cao.repairshop.notification.infrastructure.messaging
 
 import com.cao.repairshop.notification.infrastructure.health.SqsListenerHealthIndicator
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.opentelemetry.api.trace.Span
 import org.slf4j.LoggerFactory
@@ -17,6 +18,7 @@ import software.amazon.awssdk.services.sqs.model.SendMessageRequest
 import java.util.UUID
 import java.util.concurrent.ConcurrentHashMap
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class OrderApprovalInboundEvent(
     val orderId: UUID,
     val customerId: UUID,
@@ -25,12 +27,14 @@ data class OrderApprovalInboundEvent(
     val description: String? = null
 )
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class CallbackApprovalMessage(
     val orderId: UUID,
     val approved: Boolean,
     val reason: String? = null
 )
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class PaymentReceiptInboundEvent(
     val orderId: UUID,
     val customerId: UUID,
