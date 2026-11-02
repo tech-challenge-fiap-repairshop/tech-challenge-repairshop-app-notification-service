@@ -15,7 +15,7 @@ import java.net.URI
  * - Local / Docker Compose: resolve variáveis nativas do SDK (AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY / AWS_SESSION_TOKEN) ou ~/.aws/credentials.
  * - Testes integrados: resolve System Properties (aws.accessKeyId / aws.secretAccessKey) + endpointOverride.
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 class AwsConfig(
     @Value("\${aws.region:\${AWS_REGION:us-east-1}}")
     private val region: String,

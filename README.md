@@ -51,3 +51,11 @@ tech-challenge-repairshop-app-notification-service/
 - `homolog`: Branch de homologação e testes integrados.
 - `develop`: Branch de desenvolvimento ativo.
 - `feat/*`, `fix/*`, `chore/*`: Branches de trabalho.
+
+## 🧪 Testes BDD de integração
+
+Os cenários Cucumber exercitam o endpoint HTTP de aprovação em uma porta aleatória e verificam a resposta, o histórico e a mensagem publicada no SQS. O Testcontainers inicia um LocalStack isolado para esses testes; Docker deve estar instalado e em execução:
+
+```bash
+mvn -Dtest=NotificationCucumberTest test
+```
