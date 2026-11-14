@@ -1,8 +1,8 @@
-package br.com.fiap.repairshop.notification
+﻿package com.cao.repairshop.notification
 
-import br.com.fiap.repairshop.notification.infrastructure.messaging.NotificationSqsMessenger
-import br.com.fiap.repairshop.notification.infrastructure.messaging.OrderApprovalInboundEvent
-import br.com.fiap.repairshop.notification.infrastructure.messaging.PaymentReceiptInboundEvent
+import com.cao.repairshop.notification.infrastructure.messaging.NotificationSqsMessenger
+import com.cao.repairshop.notification.infrastructure.messaging.OrderApprovalInboundEvent
+import com.cao.repairshop.notification.infrastructure.messaging.PaymentReceiptInboundEvent
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import io.mockk.*

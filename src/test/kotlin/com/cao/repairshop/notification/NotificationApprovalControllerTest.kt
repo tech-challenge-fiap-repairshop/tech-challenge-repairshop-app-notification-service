@@ -1,8 +1,8 @@
-package br.com.fiap.repairshop.notification
+﻿package com.cao.repairshop.notification
 
-import br.com.fiap.repairshop.notification.infrastructure.messaging.NotificationSqsMessenger
-import br.com.fiap.repairshop.notification.infrastructure.web.ApprovalDecisionRequest
-import br.com.fiap.repairshop.notification.infrastructure.web.NotificationApprovalController
+import com.cao.repairshop.notification.infrastructure.messaging.NotificationSqsMessenger
+import com.cao.repairshop.notification.infrastructure.web.ApprovalDecisionRequest
+import com.cao.repairshop.notification.infrastructure.web.NotificationApprovalController
 import io.mockk.*
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach

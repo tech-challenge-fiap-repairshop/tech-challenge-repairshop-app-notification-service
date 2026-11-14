@@ -1,6 +1,6 @@
-package br.com.fiap.repairshop.notification.infrastructure.web
+﻿package com.cao.repairshop.notification.infrastructure.web
 
-import br.com.fiap.repairshop.notification.infrastructure.messaging.NotificationSqsMessenger
+import com.cao.repairshop.notification.infrastructure.messaging.NotificationSqsMessenger
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.http.ResponseEntity

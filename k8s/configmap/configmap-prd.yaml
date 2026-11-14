@@ -8,13 +8,14 @@ metadata:
     env: prd
 data:
   SPRING_APPLICATION_NAME: notification-service
-  SERVER_PORT: "8083"
+  SERVER_PORT: "8080"
   SPRING_PROFILES_ACTIVE: prd
-  SPRING_MAIL_HOST: smtp.aws.internal
-  SPRING_MAIL_PORT: "587"
+  SPRING_MAIL_HOST: mailpit
+  SPRING_MAIL_PORT: "1025"
   AWS_REGION: us-east-1
-  SQS_APPROVE_NOTIFICATION_QUEUE_URL: https://sqs.us-east-1.amazonaws.com/000000000000/approve-notification-queue-prd
-  SQS_PAYMENT_NOTIFICATION_QUEUE_URL: https://sqs.us-east-1.amazonaws.com/000000000000/payment-notification-queue-prd
+  SQS_QUEUE_APPROVE_NOTIFICATION: approve-notification-queue-prd
+  SQS_QUEUE_CALLBACK_APPROVE: callback-approve-notification-queue-prd
+  SQS_QUEUE_PAYMENT_NOTIFICATION: payment-notification-queue-prd
   SQS_HEALTH_CHECK_ENABLED: "true"
   SQS_HEALTH_CHECK_MAX_IDLE: "120"
-  LOGGING_LEVEL_BR_COM_FIAP_REPAIRSHOP_NOTIFICATION: INFO
+  LOGGING_LEVEL_COM_CAO_REPAIRSHOP_NOTIFICATION: INFO
