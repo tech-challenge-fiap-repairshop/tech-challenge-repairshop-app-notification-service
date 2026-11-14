@@ -1,4 +1,4 @@
-package br.com.fiap.repairshop.notification
+﻿package com.cao.repairshop.notification
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
